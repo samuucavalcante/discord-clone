@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/dialog'
 
 import { IsMounted } from '@/app/hooks/IsMounted'
+import { FileUpload } from '@/components/file-upload'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -65,7 +66,19 @@ export function InitialModal() {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y8">
             <div className="space-y-8 px-6">
               <div className="flex items-center justify-center text-center">
-                TODO: Image Upload
+                <FormField
+                  control={form.control}
+                  name="imageUrl"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FileUpload
+                        endpoint="serverImage"
+                        onChange={field.onChange}
+                        value={field.value}
+                      />
+                    </FormItem>
+                  )}
+                />
               </div>
               <FormField
                 control={form.control}
