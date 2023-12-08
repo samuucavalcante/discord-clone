@@ -11,6 +11,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 
+import { IsMounted } from '@/app/hooks/IsMounted'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -18,6 +19,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useForm } from 'react-hook-form'
@@ -32,6 +34,7 @@ const formSchema = z.object({
 })
 
 export function InitialModal() {
+  const mounted = IsMounted()
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -43,6 +46,8 @@ export function InitialModal() {
   const isLoading = form.formState.isSubmitting
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {}
+
+  if (!mounted) return null
 
   return (
     <Dialog open>
@@ -78,13 +83,16 @@ export function InitialModal() {
                         {...field}
                       />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
 
             <DialogFooter className="bg-gray-100 px-6 py-4">
-              <Button disabled={isLoading}>Create</Button>
+              <Button variant="primary" disabled={isLoading}>
+                Create
+              </Button>
             </DialogFooter>
           </form>
         </Form>
