@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body className={cn(openSans.className, 'bg-white dark:bg-[#313338]')}>
           <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
 
