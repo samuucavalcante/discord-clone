@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@/components/theme-provider'
 import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
 import { Open_Sans } from 'next/font/google'
@@ -19,7 +20,15 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={openSans.className}>
-          {children}
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem={false}
+            storageKey='discord'
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
