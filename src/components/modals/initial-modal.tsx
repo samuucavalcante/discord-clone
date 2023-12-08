@@ -1,5 +1,6 @@
 'use client'
 import { zodResolver } from '@hookform/resolvers/zod'
+import axios from 'axios'
 import * as z from 'zod'
 
 import {
@@ -23,6 +24,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
 const formSchema = z.object({
@@ -36,6 +38,7 @@ const formSchema = z.object({
 
 export function InitialModal() {
   const mounted = IsMounted()
+  const router = useRouter()
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -46,7 +49,15 @@ export function InitialModal() {
 
   const isLoading = form.formState.isSubmitting
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {}
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      await axios.post('/api/servers', values)
+      form.reset()
+      router.refresh()
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   if (!mounted) return null
 
