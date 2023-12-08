@@ -20,12 +20,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={ cn(openSans.className, "bg-white dark:bg-[#313338]")}>
-        <ThemeProvider
+        <body className={cn(openSans.className, 'bg-white dark:bg-[#313338]')}>
+          <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem={false}
-            storageKey='discord'
+            storageKey="discord"
             disableTransitionOnChange
           >
             {children}
