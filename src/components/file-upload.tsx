@@ -6,6 +6,7 @@ import { X } from 'lucide-react'
 import Image from 'next/image'
 
 type ErrorParams = { message: string }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ClientUploadCompleteParams = any
 
 type FileUploadProps = {
