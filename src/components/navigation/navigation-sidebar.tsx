@@ -22,7 +22,7 @@ export async function NavigationSidebar() {
   return (
     <div className="space-y-4 flex flex-col items-center h-full text-primary w-full dark:bg-[#1e1f22]">
       <NavigationAction />
-      <Separator />
+      <Separator className="h-[2px] bg-zinc-300 dark:bg-zinc-700 rounded-md w-10 mx-auto" />
     </div>
   )
 }
