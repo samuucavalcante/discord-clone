@@ -1,3 +1,4 @@
+import { ModalProvider } from '@/components/providers/modal-provider'
 import { ThemeProvider } from '@/components/theme-provider'
 import type { ReactNode } from 'react'
 
@@ -13,6 +14,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       storageKey="discord"
       disableTransitionOnChange
     >
+      <ModalProvider />
       {children}
     </ThemeProvider>
   )
